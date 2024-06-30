@@ -11,6 +11,7 @@
 		03DFDCB42C315725008D6FBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFDCB32C315725008D6FBD /* ContentView.swift */; };
 		03DFDCB62C315726008D6FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DFDCB52C315726008D6FBD /* Assets.xcassets */; };
 		03DFDCB92C315726008D6FBD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DFDCB82C315726008D6FBD /* Preview Assets.xcassets */; };
+		03DFDCC22C315BC8008D6FBD /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFDCC12C315BC8008D6FBD /* BluetoothDevices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,8 @@
 		03DFDCB52C315726008D6FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DFDCB82C315726008D6FBD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03DFDCBA2C315726008D6FBD /* ParseBluetoothDevices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParseBluetoothDevices.entitlements; sourceTree = "<group>"; };
+		03DFDCC02C315AA4008D6FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		03DFDCC12C315BC8008D6FBD /* BluetoothDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +55,13 @@
 		03DFDCB02C315725008D6FBD /* ParseBluetoothDevices */ = {
 			isa = PBXGroup;
 			children = (
+				03DFDCC02C315AA4008D6FBD /* Info.plist */,
 				03DFDCB12C315725008D6FBD /* ParseBluetoothDevicesApp.swift */,
 				03DFDCB32C315725008D6FBD /* ContentView.swift */,
 				03DFDCB52C315726008D6FBD /* Assets.xcassets */,
 				03DFDCBA2C315726008D6FBD /* ParseBluetoothDevices.entitlements */,
 				03DFDCB72C315726008D6FBD /* Preview Content */,
+				03DFDCC12C315BC8008D6FBD /* BluetoothDevices.swift */,
 			);
 			path = ParseBluetoothDevices;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			files = (
 				03DFDCB42C315725008D6FBD /* ContentView.swift in Sources */,
 				03DFDCB22C315725008D6FBD /* ParseBluetoothDevicesApp.swift in Sources */,
+				03DFDCC22C315BC8008D6FBD /* BluetoothDevices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ParseBluetoothDevices/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParseBluetoothDevices/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Pls giv";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Pls wrk";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +311,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ParseBluetoothDevices/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParseBluetoothDevices/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Pls giv";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Pls wrk";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
