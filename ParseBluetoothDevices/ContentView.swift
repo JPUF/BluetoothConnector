@@ -16,6 +16,12 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .padding()
 
+            Button(action: {
+                bluetoothDevices.fetchPairedDevices()
+            }) {
+                Text("Reload")
+            }
+            
             if bluetoothDevices.devices.isEmpty {
                 Text("No devices found")
                     .padding()
@@ -35,9 +41,9 @@ struct ContentView: View {
                             }
                             .padding(.top, 5)
                         } else if device.isPaired() && !device.isConnected() {
-                            Button(action: {
+                            Button {
                                 bluetoothDevices.connectToDevice(device: device)
-                            }) {
+                            } label : {
                                 Text("Connect")
                             }
                             .padding(.top, 5)

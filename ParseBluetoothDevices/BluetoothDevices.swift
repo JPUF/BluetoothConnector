@@ -6,22 +6,25 @@
 //
 
 import IOBluetooth
+import WidgetKit
 
 class BluetoothDevices: ObservableObject {
     @Published var devices: [IOBluetoothDevice] = []
-
+    
     func fetchPairedDevices() {
         guard let pairedDevices = IOBluetoothDevice.pairedDevices() as? [IOBluetoothDevice] else {
             print("No devices")
             return
         }
         self.devices = pairedDevices
+        saveDevicesToSharedContainer()
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func connectToDevice(device: IOBluetoothDevice) {
         print("Connecting to \(device.name ?? "unknown")")
         let result = device.openConnection()
-        if(result == kIOReturnSuccess) {
+        if result == kIOReturnSuccess {
             fetchPairedDevices()
         }
     }
@@ -30,5 +33,18 @@ class BluetoothDevices: ObservableObject {
         print("Disconnecting from \(device.name ?? "unknown")")
         let result = device.closeConnection()
         fetchPairedDevices()
+    }
+    
+    private func saveDevicesToSharedContainer() {
+        let deviceData = devices.map { device in
+            [
+                "name": device.name ?? "Unknown",
+                "paired": device.isPaired(),
+                "connected": device.isConnected()
+            ] as [String : Any]
+        }
+        print("saving \(deviceData.count) devices to group.com.jlbennett.ParseBluetoothDevices")
+        let defaults = UserDefaults(suiteName: "group.com.jlbennett.ParseBluetoothDevices")
+        defaults?.set(deviceData, forKey: "BluetoothDevices")
     }
 }
