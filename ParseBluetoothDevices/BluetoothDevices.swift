@@ -18,7 +18,6 @@ class BluetoothDevices: ObservableObject {
         }
         self.devices = pairedDevices
         saveDevicesToSharedContainer()
-        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func connectToDevice(device: IOBluetoothDevice) {
@@ -43,8 +42,6 @@ class BluetoothDevices: ObservableObject {
                 "connected": device.isConnected()
             ] as [String : Any]
         }
-        print("saving \(deviceData.count) devices to group.com.jlbennett.ParseBluetoothDevices")
-        let defaults = UserDefaults(suiteName: "group.com.jlbennett.ParseBluetoothDevices")
-        defaults?.set(deviceData, forKey: "BluetoothDevices")
+        WidgetBridge.saveData(deviceData: deviceData)
     }
 }

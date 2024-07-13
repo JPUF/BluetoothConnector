@@ -13,6 +13,10 @@
 		032940A82C34AC8600D1F866 /* DeviceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032940A72C34AC8600D1F866 /* DeviceWidget.swift */; };
 		032940AA2C34AC8700D1F866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 032940A92C34AC8700D1F866 /* Assets.xcassets */; };
 		032940AF2C34AC8700D1F866 /* DeviceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0329409E2C34AC8600D1F866 /* DeviceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		03CA58CE2C41C99500B19996 /* ConnectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */; };
+		03CA58CF2C41C99500B19996 /* ConnectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */; };
+		03CA58D22C41CF4100B19996 /* WidgetBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58D12C41CF4100B19996 /* WidgetBridge.swift */; };
+		03CA58D32C41CF4100B19996 /* WidgetBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58D12C41CF4100B19996 /* WidgetBridge.swift */; };
 		03DFDCB22C315725008D6FBD /* ParseBluetoothDevicesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFDCB12C315725008D6FBD /* ParseBluetoothDevicesApp.swift */; };
 		03DFDCB42C315725008D6FBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFDCB32C315725008D6FBD /* ContentView.swift */; };
 		03DFDCB62C315726008D6FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DFDCB52C315726008D6FBD /* Assets.xcassets */; };
@@ -53,6 +57,8 @@
 		032940A92C34AC8700D1F866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		032940AB2C34AC8700D1F866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		032940AC2C34AC8700D1F866 /* DeviceWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceWidget.entitlements; sourceTree = "<group>"; };
+		03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionIntent.swift; sourceTree = "<group>"; };
+		03CA58D12C41CF4100B19996 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
 		03DFDCAE2C315725008D6FBD /* ParseBluetoothDevices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseBluetoothDevices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DFDCB12C315725008D6FBD /* ParseBluetoothDevicesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseBluetoothDevicesApp.swift; sourceTree = "<group>"; };
 		03DFDCB32C315725008D6FBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,13 +106,23 @@
 				032940A92C34AC8700D1F866 /* Assets.xcassets */,
 				032940AB2C34AC8700D1F866 /* Info.plist */,
 				032940AC2C34AC8700D1F866 /* DeviceWidget.entitlements */,
+				03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */,
 			);
 			path = DeviceWidget;
+			sourceTree = "<group>";
+		};
+		03CA58D02C41CF0900B19996 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				03CA58D12C41CF4100B19996 /* WidgetBridge.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		03DFDCA52C315725008D6FBD = {
 			isa = PBXGroup;
 			children = (
+				03CA58D02C41CF0900B19996 /* Shared */,
 				03DFDCB02C315725008D6FBD /* ParseBluetoothDevices */,
 				032940A42C34AC8600D1F866 /* DeviceWidget */,
 				0329409F2C34AC8600D1F866 /* Frameworks */,
@@ -248,6 +264,8 @@
 			files = (
 				032940A62C34AC8600D1F866 /* DeviceWidgetBundle.swift in Sources */,
 				032940A82C34AC8600D1F866 /* DeviceWidget.swift in Sources */,
+				03CA58D32C41CF4100B19996 /* WidgetBridge.swift in Sources */,
+				03CA58CF2C41C99500B19996 /* ConnectionIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +275,9 @@
 			files = (
 				03DFDCB42C315725008D6FBD /* ContentView.swift in Sources */,
 				03DFDCB22C315725008D6FBD /* ParseBluetoothDevicesApp.swift in Sources */,
+				03CA58D22C41CF4100B19996 /* WidgetBridge.swift in Sources */,
 				03DFDCC22C315BC8008D6FBD /* BluetoothDevices.swift in Sources */,
+				03CA58CE2C41C99500B19996 /* ConnectionIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,33 +11,23 @@ import IOBluetooth
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), devices: [])
+        SimpleEntry(date: Date(), devices: [], dummyText: "placeholder")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        print("getSnapshot")
-        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer())
+        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer(), dummyText: "snapshot")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        print("getTimeline")
         let currentDate = Date()
-        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer())
+        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer(), dummyText: currentDate.description)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
     
     private func fetchBluetoothDevicesFromSharedContainer() -> [BluetoothDeviceEntry] {
-        let defaults = UserDefaults(suiteName: "group.com.jlbennett.ParseBluetoothDevices")
-        let someData = defaults?.array(forKey: "BluetoothDevices")
-        print("weird devices \(someData?.count ?? -1)")
-        guard let deviceData = defaults?.array(forKey: "BluetoothDevices") as? [[String: Any]] else {
-            print("no devices")
-            return []
-        }
-        
-        print("some devices")
+        let deviceData = WidgetBridge.fetchData()
 
         return deviceData.map { data in
             BluetoothDeviceEntry(
@@ -52,6 +42,7 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let devices: [BluetoothDeviceEntry]
+    let dummyText: String
 }
 
 struct BluetoothDeviceEntry {
@@ -75,6 +66,10 @@ struct DeviceWidgetEntryView : View {
                 }
                 .padding(.vertical, 2)
             }
+            Button(intent: ConnectDeviceIntent()) {
+                Text("X: \(entry.dummyText)")
+            }
+            .padding()
         }
         .padding()
     }
