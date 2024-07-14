@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import IOBluetooth
 import WidgetKit
 
 struct WidgetBridge {
@@ -24,10 +25,25 @@ struct WidgetBridge {
     static func saveData(deviceData: [[String: Any]]) {
         let defaults = UserDefaults(suiteName: deviceSuiteName)
         defaults?.set(deviceData, forKey: deviceDataKey)
-        reloadWidget()
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
-    static func reloadWidget() {
-        WidgetCenter.shared.reloadAllTimelines()
+    static func connectToDevice() {
+        guard let pairedDevices = IOBluetoothDevice.pairedDevices() as? [IOBluetoothDevice] else {
+            print("No devices")
+            return
+        }
+        guard let device = pairedDevices.first else {
+            print("Device not found")
+            return
+        }
+
+        let result = device.openConnection()
+        if result == kIOReturnSuccess {
+            print("Connected to \(device.name ?? "Unknown")")
+            WidgetCenter.shared.reloadAllTimelines()
+        } else {
+            print("Failed to connect to \(device.name ?? "Unknown")")
+        }
     }
 }

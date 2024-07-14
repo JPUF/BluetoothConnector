@@ -37,6 +37,7 @@ class BluetoothDevices: ObservableObject {
     private func saveDevicesToSharedContainer() {
         let deviceData = devices.map { device in
             [
+                "address": device.addressString ?? "",
                 "name": device.name ?? "Unknown",
                 "paired": device.isPaired(),
                 "connected": device.isConnected()

@@ -13,6 +13,8 @@
 		032940A82C34AC8600D1F866 /* DeviceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032940A72C34AC8600D1F866 /* DeviceWidget.swift */; };
 		032940AA2C34AC8700D1F866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 032940A92C34AC8700D1F866 /* Assets.xcassets */; };
 		032940AF2C34AC8700D1F866 /* DeviceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0329409E2C34AC8600D1F866 /* DeviceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		03B99D802C4348360067AB57 /* DeviceIntentParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B99D7F2C4348360067AB57 /* DeviceIntentParam.swift */; };
+		03B99D812C4348360067AB57 /* DeviceIntentParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B99D7F2C4348360067AB57 /* DeviceIntentParam.swift */; };
 		03CA58CE2C41C99500B19996 /* ConnectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */; };
 		03CA58CF2C41C99500B19996 /* ConnectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */; };
 		03CA58D22C41CF4100B19996 /* WidgetBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA58D12C41CF4100B19996 /* WidgetBridge.swift */; };
@@ -57,6 +59,7 @@
 		032940A92C34AC8700D1F866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		032940AB2C34AC8700D1F866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		032940AC2C34AC8700D1F866 /* DeviceWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceWidget.entitlements; sourceTree = "<group>"; };
+		03B99D7F2C4348360067AB57 /* DeviceIntentParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIntentParam.swift; sourceTree = "<group>"; };
 		03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionIntent.swift; sourceTree = "<group>"; };
 		03CA58D12C41CF4100B19996 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
 		03DFDCAE2C315725008D6FBD /* ParseBluetoothDevices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseBluetoothDevices.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +110,7 @@
 				032940AB2C34AC8700D1F866 /* Info.plist */,
 				032940AC2C34AC8700D1F866 /* DeviceWidget.entitlements */,
 				03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */,
+				03B99D7F2C4348360067AB57 /* DeviceIntentParam.swift */,
 			);
 			path = DeviceWidget;
 			sourceTree = "<group>";
@@ -263,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				032940A62C34AC8600D1F866 /* DeviceWidgetBundle.swift in Sources */,
+				03B99D812C4348360067AB57 /* DeviceIntentParam.swift in Sources */,
 				032940A82C34AC8600D1F866 /* DeviceWidget.swift in Sources */,
 				03CA58D32C41CF4100B19996 /* WidgetBridge.swift in Sources */,
 				03CA58CF2C41C99500B19996 /* ConnectionIntent.swift in Sources */,
@@ -274,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03DFDCB42C315725008D6FBD /* ContentView.swift in Sources */,
+				03B99D802C4348360067AB57 /* DeviceIntentParam.swift in Sources */,
 				03DFDCB22C315725008D6FBD /* ParseBluetoothDevicesApp.swift in Sources */,
 				03CA58D22C41CF4100B19996 /* WidgetBridge.swift in Sources */,
 				03DFDCC22C315BC8008D6FBD /* BluetoothDevices.swift in Sources */,

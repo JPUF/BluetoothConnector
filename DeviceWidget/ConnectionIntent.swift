@@ -15,7 +15,7 @@ struct ConnectDeviceIntent: AppIntent {
     static var description = IntentDescription("Manager device connection")
     
     func perform() async throws -> some IntentResult {
-        WidgetBridge.reloadWidget()
+        WidgetBridge.connectToDevice()
         return .result()
     }
 }

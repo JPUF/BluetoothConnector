@@ -31,6 +31,7 @@ struct Provider: TimelineProvider {
 
         return deviceData.map { data in
             BluetoothDeviceEntry(
+                address: data["address"] as? String ?? "",
                 name: data["name"] as? String ?? "Unknown",
                 paired: data["paired"] as? Bool ?? false,
                 connected: data["connected"] as? Bool ?? false
@@ -46,6 +47,7 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct BluetoothDeviceEntry {
+    let address: String
     let name: String
     let paired: Bool
     let connected: Bool
@@ -59,15 +61,19 @@ struct DeviceWidgetEntryView : View {
             Text("Bluetooth Devices")
                 .font(.headline)
             ForEach(entry.devices, id: \.name) { device in
-                VStack(alignment: .leading) {
-                    Text("Name: \(device.name)")
-                    Text("Paired: \(device.paired ? "Yes" : "No")")
-                    Text("Connected: \(device.connected ? "Yes" : "No")")
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Name: \(device.name)")
+                        Text("Paired: \(device.paired ? "Yes" : "No")")
+                        Text("Connected: \(device.connected ? "Yes" : "No")")
+                    }
+                    Button(
+                        intent: ConnectDeviceIntent()
+                    ) {
+                        Text("X: \(entry.dummyText)")
+                    }
                 }
                 .padding(.vertical, 2)
-            }
-            Button(intent: ConnectDeviceIntent()) {
-                Text("X: \(entry.dummyText)")
             }
             .padding()
         }
