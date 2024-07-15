@@ -10,9 +10,10 @@ import IOBluetooth
 import WidgetKit
 
 struct WidgetBridge {
+    private static let bluetoothDevices = BluetoothDevices.shared
     
-    static let deviceSuiteName = "group.com.jlbennett.ParseBluetoothDevices"
-    static private let deviceDataKey = "BluetoothDevices"
+    private static let deviceSuiteName = "group.com.jlbennett.ParseBluetoothDevices"
+    private static let deviceDataKey = "BluetoothDevices"
     
     static func fetchData() -> [[String: Any]] {
         let defaults = UserDefaults(suiteName: deviceSuiteName)
@@ -29,33 +30,16 @@ struct WidgetBridge {
     }
     
     static func connectToDevice(deviceAddress: String) {
-         print("Connecting to device with address: \(deviceAddress)")
-
-         // Get the list of paired devices
-         guard let pairedDevices = IOBluetoothDevice.pairedDevices() as? [IOBluetoothDevice] else {
-             print("No devices found")
-             return
-         }
-
-         print("Device count: \(pairedDevices.count)")
-         pairedDevices.forEach {
-             print($0.addressString ?? "No address")
-         }
-
-         // Find the device with the matching address
-         guard let device = pairedDevices.first(where: { $0.addressString == deviceAddress }) else {
-             print("Device with address \(deviceAddress) not found")
-             return
-         }
-
-         print("Connecting to device: \(device.addressString ?? "No address")")
-         let result = device.openConnection()
-         
-         if result == kIOReturnSuccess {
-             print("Connected to \(device.name ?? "Unknown")")
-             WidgetCenter.shared.reloadAllTimelines()
-         } else {
-             print("Failed to connect to \(device.name ?? "Unknown")")
-         }
-     }
+        let result = bluetoothDevices.connectToDevice(deviceAddress:deviceAddress)
+        if result == kIOReturnSuccess {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
+    
+    static func disconnectFromDevice(deviceAddress: String) {
+        let result = bluetoothDevices.disconnectFromDevice(deviceAddress:deviceAddress)
+        if result == kIOReturnSuccess {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
 }

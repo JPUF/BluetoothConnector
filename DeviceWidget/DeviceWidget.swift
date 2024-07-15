@@ -68,7 +68,7 @@ struct DeviceWidgetEntryView : View {
                         Text("Connected: \(device.connected ? "Yes" : "No")")
                     }
                     Button(
-                        intent: ConnectDeviceIntent(device.address)
+                        intent: ConnectDeviceIntent(device.address, device.connected)
                     ) {
                         Text(device.connected ? "Disconnect" : "Connect")
                     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var bluetoothDevices = BluetoothDevices()
+    @ObservedObject var bluetoothDevices = BluetoothDevices.shared
 
     var body: some View {
         VStack {
@@ -22,11 +22,13 @@ struct ContentView: View {
                 Text("Reload")
             }
             
-            if bluetoothDevices.devices.isEmpty {
+            let devices = bluetoothDevices.devices
+            
+            if devices.isEmpty {
                 Text("No devices found")
                     .padding()
             } else {
-                List(bluetoothDevices.devices, id: \.addressString) { device in
+                List(devices, id: \.addressString) { device in
                     VStack(alignment: .leading) {
                         Text("Name: \(device.name ?? "Unknown")")
                         Text("Paired?: \(device.isPaired() ? "Yes" : "No")")
