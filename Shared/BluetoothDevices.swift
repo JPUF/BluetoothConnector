@@ -21,15 +21,20 @@ class BluetoothDevices: ObservableObject {
             print("No devices")
             return
         }
-        self.devices = pairedDevices
-        saveDevicesToSharedContainer()
+        for device in pairedDevices {
+            print("fetched device: \(device.name ?? ""), connected: \(device.isConnected())")
+        }
+        DispatchQueue.main.async {
+            self.devices = pairedDevices
+            self.saveDevicesToSharedContainer()
+        }
     }
     
     func getDeviceByAddress(deviceAddress: String) -> IOBluetoothDevice? {
         if(devices.isEmpty) {
             fetchPairedDevices()
         }
-
+        
         // Find the device with the matching address
         guard let device = devices.first(where: { $0.addressString == deviceAddress }) else {
             print("Device with address \(deviceAddress) not found")
@@ -67,7 +72,9 @@ class BluetoothDevices: ObservableObject {
     func disconnectFromDevice(device: IOBluetoothDevice) -> IOReturn {
         print("Disconnecting from \(device.name ?? "unknown")")
         let result = device.closeConnection()
-        fetchPairedDevices()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.fetchPairedDevices()
+        }
         return result
     }
     
