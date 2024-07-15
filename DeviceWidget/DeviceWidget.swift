@@ -8,20 +8,21 @@
 import WidgetKit
 import SwiftUI
 import IOBluetooth
+import AppIntents
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), devices: [], dummyText: "placeholder")
+        SimpleEntry(date: Date(), devices: [])
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer(), dummyText: "snapshot")
+        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer())
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
-        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer(), dummyText: currentDate.description)
+        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer())
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
@@ -43,7 +44,6 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let devices: [BluetoothDeviceEntry]
-    let dummyText: String
 }
 
 struct BluetoothDeviceEntry {
@@ -68,9 +68,9 @@ struct DeviceWidgetEntryView : View {
                         Text("Connected: \(device.connected ? "Yes" : "No")")
                     }
                     Button(
-                        intent: ConnectDeviceIntent()
+                        intent: ConnectDeviceIntent(device.address)
                     ) {
-                        Text("X: \(entry.dummyText)")
+                        Text(device.connected ? "Disconnect" : "Connect")
                     }
                 }
                 .padding(.vertical, 2)

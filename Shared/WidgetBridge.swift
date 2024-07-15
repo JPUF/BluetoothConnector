@@ -28,22 +28,34 @@ struct WidgetBridge {
         WidgetCenter.shared.reloadAllTimelines()
     }
     
-    static func connectToDevice() {
-        guard let pairedDevices = IOBluetoothDevice.pairedDevices() as? [IOBluetoothDevice] else {
-            print("No devices")
-            return
-        }
-        guard let device = pairedDevices.first else {
-            print("Device not found")
-            return
-        }
+    static func connectToDevice(deviceAddress: String) {
+         print("Connecting to device with address: \(deviceAddress)")
 
-        let result = device.openConnection()
-        if result == kIOReturnSuccess {
-            print("Connected to \(device.name ?? "Unknown")")
-            WidgetCenter.shared.reloadAllTimelines()
-        } else {
-            print("Failed to connect to \(device.name ?? "Unknown")")
-        }
-    }
+         // Get the list of paired devices
+         guard let pairedDevices = IOBluetoothDevice.pairedDevices() as? [IOBluetoothDevice] else {
+             print("No devices found")
+             return
+         }
+
+         print("Device count: \(pairedDevices.count)")
+         pairedDevices.forEach {
+             print($0.addressString ?? "No address")
+         }
+
+         // Find the device with the matching address
+         guard let device = pairedDevices.first(where: { $0.addressString == deviceAddress }) else {
+             print("Device with address \(deviceAddress) not found")
+             return
+         }
+
+         print("Connecting to device: \(device.addressString ?? "No address")")
+         let result = device.openConnection()
+         
+         if result == kIOReturnSuccess {
+             print("Connected to \(device.name ?? "Unknown")")
+             WidgetCenter.shared.reloadAllTimelines()
+         } else {
+             print("Failed to connect to \(device.name ?? "Unknown")")
+         }
+     }
 }
