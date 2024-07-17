@@ -83,7 +83,6 @@ class BluetoothDevices: ObservableObject {
             [
                 "address": device.addressString ?? "",
                 "name": device.name ?? "Unknown",
-                "paired": device.isPaired(),
                 "connected": device.isConnected()
             ] as [String : Any]
         }

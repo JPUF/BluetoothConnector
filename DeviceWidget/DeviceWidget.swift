@@ -7,36 +7,45 @@
 
 import WidgetKit
 import SwiftUI
-import IOBluetooth
-import AppIntents
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), devices: [])
+        let maxDevices = maxVisibleDevices(for: context)
+        return SimpleEntry(date: Date(), devices: [], maxDeviceCount: maxVisibleDevices(for: context))
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer())
+        let maxDevices = maxVisibleDevices(for: context)
+        let entry = SimpleEntry(date: Date(), devices: fetchBluetoothDevicesFromSharedContainer(), maxDeviceCount: maxDevices)
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
-        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer())
+        let maxDevices = maxVisibleDevices(for: context)
+        let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer(), maxDeviceCount: maxDevices)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
     
     private func fetchBluetoothDevicesFromSharedContainer() -> [BluetoothDeviceEntry] {
         let deviceData = WidgetBridge.fetchData()
-
+        
         return deviceData.map { data in
             BluetoothDeviceEntry(
                 address: data["address"] as? String ?? "",
                 name: data["name"] as? String ?? "Unknown",
-                paired: data["paired"] as? Bool ?? false,
                 connected: data["connected"] as? Bool ?? false
             )
+        }
+    }
+    
+    private func maxVisibleDevices(for context: Context) -> Int {
+        switch context.family {
+        case .systemSmall, .systemMedium:
+            return 3
+        default:
+            return 7
         }
     }
 }
@@ -44,50 +53,46 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let devices: [BluetoothDeviceEntry]
+    let maxDeviceCount: Int
 }
 
-struct BluetoothDeviceEntry {
-    let address: String
-    let name: String
-    let paired: Bool
-    let connected: Bool
-}
 
-struct DeviceWidgetEntryView : View {
+
+@available(macOS 14.0, *)
+struct DeviceWidgetEntryView: View {
     var entry: Provider.Entry
-
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 4) {
             Text("Bluetooth Devices")
                 .font(.headline)
-            ForEach(entry.devices, id: \.name) { device in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Name: \(device.name)")
-                        Text("Paired: \(device.paired ? "Yes" : "No")")
-                        Text("Connected: \(device.connected ? "Yes" : "No")")
-                    }
-                    Button(
-                        intent: ConnectDeviceIntent(device.address, device.connected)
-                    ) {
-                        Text(device.connected ? "Disconnect" : "Connect")
+                .foregroundColor(.primary)
+                .padding(.bottom, 4)
+            
+            let devicesToDisplay = entry.devices.prefix(entry.maxDeviceCount)
+            ForEach(devicesToDisplay.indices, id: \.self) { index in
+                VStack {
+                    DeviceRowView(device: devicesToDisplay[index])
+                    
+                    if index != devicesToDisplay.indices.last {
+                        Divider()
+                            .padding(.leading, 32)
                     }
                 }
                 .padding(.vertical, 2)
             }
-            .padding()
         }
-        .padding()
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
 struct DeviceWidget: Widget {
     let kind: String = "DeviceWidget"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             DeviceWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.background, for: .widget)
         }
         .configurationDisplayName("Bluetooth Device Widget")
         .description("Displays the status of paired Bluetooth devices.")

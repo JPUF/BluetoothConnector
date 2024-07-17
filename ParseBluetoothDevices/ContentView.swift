@@ -31,7 +31,6 @@ struct ContentView: View {
                 List(devices, id: \.addressString) { device in
                     VStack(alignment: .leading) {
                         Text("Name: \(device.name ?? "Unknown")")
-                        Text("Paired?: \(device.isPaired() ? "Yes" : "No")")
                         Text("Connected?: \(device.isConnected() ? "Yes" : "No")")
                         
                         // Show the appropriate button based on the connection status

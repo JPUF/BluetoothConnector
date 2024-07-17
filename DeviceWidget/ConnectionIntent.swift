@@ -8,7 +8,7 @@
 import Foundation
 import AppIntents
 
-@available(iOS 16.0, macOS 14.0, watchOS 9.0, tvOS 16.0, *)
+@available(macOS 14.0, *)
 struct ConnectDeviceIntent: AppIntent {
     
     static var title: LocalizedStringResource = "Device Connect"
