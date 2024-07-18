@@ -31,7 +31,6 @@ struct DeviceRowView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .buttonStyle(PlainButtonStyle())
         .padding(.vertical, 4)
-        .padding(.horizontal, 8)
     }
 }
 

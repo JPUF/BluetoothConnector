@@ -8,12 +8,18 @@
 import IOBluetooth
 import WidgetKit
 
-class BluetoothDevices: ObservableObject {
+class BluetoothDevices: ObservableObject, BluetoothConnectionDelegate {
+    
     static let shared = BluetoothDevices()
     @Published var devices: [IOBluetoothDevice] = []
     
+    private var bluetoothConnection: BluetoothConnection?
+    
     private init() {
         // Private initializer to ensure singleton usage
+        registerForNotifications()
+        fetchPairedDevices()
+        bluetoothConnection = BluetoothConnection(delegate: self)
     }
     
     func fetchPairedDevices() {
@@ -31,7 +37,7 @@ class BluetoothDevices: ObservableObject {
     }
     
     func getDeviceByAddress(deviceAddress: String) -> IOBluetoothDevice? {
-        if(devices.isEmpty) {
+        if devices.isEmpty {
             fetchPairedDevices()
         }
         
@@ -71,11 +77,7 @@ class BluetoothDevices: ObservableObject {
     
     func disconnectFromDevice(device: IOBluetoothDevice) -> IOReturn {
         print("Disconnecting from \(device.name ?? "unknown")")
-        let result = device.closeConnection()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.fetchPairedDevices()
-        }
-        return result
+        return device.closeConnection()
     }
     
     private func saveDevicesToSharedContainer() {
@@ -87,5 +89,31 @@ class BluetoothDevices: ObservableObject {
             ] as [String : Any]
         }
         WidgetBridge.saveData(deviceData: deviceData)
+    }
+    
+    
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceConnected(_:)), name: NSNotification.Name(rawValue: kIOBluetoothDeviceNotificationNameConnected), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceDisconnected(_:)), name: NSNotification.Name(rawValue: kIOBluetoothDeviceNotificationNameDisconnected), object: nil)
+    }
+    
+    @objc private func deviceConnected(_ notification: Notification) {
+        print("Device connected")
+        if let device = notification.object as? IOBluetoothDevice {
+            print("Device connected: \(device.name ?? "Unknown")")
+            fetchPairedDevices()
+        }
+    }
+    
+    @objc private func deviceDisconnected(_ notification: Notification) {
+        if let device = notification.object as? IOBluetoothDevice {
+            print("Device disconnected: \(device.name ?? "Unknown")")
+            fetchPairedDevices()
+        }
+    }
+    
+    func onDeviceConnectivityChanged() {
+        fetchPairedDevices()
     }
 }
