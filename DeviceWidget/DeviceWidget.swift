@@ -72,7 +72,7 @@ struct DeviceWidgetEntryView: View {
             let devicesToDisplay = entry.devices.prefix(entry.maxDeviceCount)
             ForEach(devicesToDisplay.indices, id: \.self) { index in
                 VStack {
-                    DeviceRowView(device: devicesToDisplay[index])
+                    DeviceRowWidgetView(device: devicesToDisplay[index])
                     
                     if index != devicesToDisplay.indices.last {
                         Divider()

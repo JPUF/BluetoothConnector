@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var bluetoothDevices = BluetoothDevices.shared
-
+    
     var body: some View {
         VStack {
             Text("Bluetooth Devices")
                 .font(.largeTitle)
                 .padding()
-
+            
             Button(action: {
                 bluetoothDevices.fetchPairedDevices()
             }) {
@@ -29,28 +29,13 @@ struct ContentView: View {
                     .padding()
             } else {
                 List(devices, id: \.addressString) { device in
-                    VStack(alignment: .leading) {
-                        Text("Name: \(device.name ?? "Unknown")")
-                        Text("Connected?: \(device.isConnected() ? "Yes" : "No")")
-                        
-                        // Show the appropriate button based on the connection status
-                        if device.isPaired() && device.isConnected() {
-                            Button(action: {
-                                bluetoothDevices.disconnectFromDevice(device: device)
-                            }) {
-                                Text("Disconnect")
-                            }
-                            .padding(.top, 5)
-                        } else if device.isPaired() && !device.isConnected() {
-                            Button {
-                                bluetoothDevices.connectToDevice(device: device)
-                            } label : {
-                                Text("Connect")
-                            }
-                            .padding(.top, 5)
+                    DeviceRowView(device: device) { shouldConnect in
+                        if shouldConnect {
+                            let _ = bluetoothDevices.connectToDevice(device: device)
+                        } else {
+                            let _ = bluetoothDevices.disconnectFromDevice(device: device)
                         }
                     }
-                    .padding()
                 }
             }
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 import AppIntents
 
-struct DeviceRowView: View {
+struct DeviceRowWidgetView: View {
     let device: BluetoothDeviceEntry
 
     var body: some View {
@@ -55,7 +55,7 @@ struct DeviceRowView: View {
 }
 
 #Preview {
-    DeviceRowView(device: BluetoothDeviceEntry(
+    DeviceRowWidgetView(device: BluetoothDeviceEntry(
         address: "address",
         name: "MyHeadphones",
         connected: true,
