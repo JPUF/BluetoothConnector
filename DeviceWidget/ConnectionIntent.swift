@@ -35,6 +35,7 @@ struct ConnectDeviceIntent: AppIntent {
         guard let deviceAddress = deviceAddress else {
             return .result()
         }
+        WidgetBridge.setDeviceLoading(deviceAddress: deviceAddress)
         if isDeviceConnected == true {
             WidgetBridge.disconnectFromDevice(deviceAddress: deviceAddress)
         } else {

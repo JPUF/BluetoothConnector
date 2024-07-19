@@ -10,7 +10,6 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        let maxDevices = maxVisibleDevices(for: context)
         return SimpleEntry(date: Date(), devices: [], maxDeviceCount: maxVisibleDevices(for: context))
     }
     
@@ -35,7 +34,8 @@ struct Provider: TimelineProvider {
             BluetoothDeviceEntry(
                 address: data["address"] as? String ?? "",
                 name: data["name"] as? String ?? "Unknown",
-                connected: data["connected"] as? Bool ?? false
+                connected: data["connected"] as? Bool ?? false,
+                loading: data["loading"] as? Bool ?? false
             )
         }
     }

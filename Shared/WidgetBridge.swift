@@ -29,6 +29,10 @@ struct WidgetBridge {
         WidgetCenter.shared.reloadAllTimelines()
     }
     
+    static func setDeviceLoading(deviceAddress: String) {
+        bluetoothDevices.saveLoadingDevicesToSharedContainer(deviceAddress: deviceAddress)
+    }
+    
     static func connectToDevice(deviceAddress: String) {
         let result = bluetoothDevices.connectToDevice(deviceAddress:deviceAddress)
         if result == kIOReturnSuccess {

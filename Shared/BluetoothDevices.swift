@@ -85,7 +85,21 @@ class BluetoothDevices: ObservableObject, BluetoothConnectionDelegate {
             [
                 "address": device.addressString ?? "",
                 "name": device.name ?? "Unknown",
-                "connected": device.isConnected()
+                "connected": device.isConnected(),
+                "loading": false,
+            ] as [String : Any]
+        }
+        WidgetBridge.saveData(deviceData: deviceData)
+    }
+    
+    func saveLoadingDevicesToSharedContainer(deviceAddress: String) {
+        print("Loading device: \(deviceAddress)")
+        let deviceData = devices.map { device in
+            [
+                "address": device.addressString ?? "",
+                "name": device.name ?? "Unknown",
+                "connected": device.isConnected(),
+                "loading": device.addressString ?? "" == deviceAddress ? true : false,
             ] as [String : Any]
         }
         WidgetBridge.saveData(deviceData: deviceData)

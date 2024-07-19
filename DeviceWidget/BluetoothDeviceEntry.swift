@@ -11,4 +11,5 @@ struct BluetoothDeviceEntry {
     let address: String
     let name: String
     let connected: Bool
+    let loading: Bool
 }

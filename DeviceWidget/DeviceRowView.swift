@@ -16,10 +16,10 @@ struct DeviceRowView: View {
             intent: ConnectDeviceIntent(device.address, device.connected)
         ) {
             HStack {
-                Image(systemName: device.connected ? "link.circle" : "circle")
+                Image(systemName: imageName(for: device))
                     .resizable()
                     .frame(width: 20.0, height: 20.0)
-                    .foregroundColor(device.connected ? .green : .gray)
+                    .foregroundColor(imageColor(for: device))
                     
                 Text(device.name)
                     .font(.subheadline)
@@ -32,8 +32,33 @@ struct DeviceRowView: View {
         .buttonStyle(PlainButtonStyle())
         .padding(.vertical, 4)
     }
+    
+    private func imageName(for entry: BluetoothDeviceEntry) -> String {
+        if(entry.loading){
+            return "arrow.2.circlepath.circle"
+        } else if (entry.connected) {
+            return "link.circle"
+        } else {
+            return "circle"
+        }
+    }
+    
+    private func imageColor(for entry: BluetoothDeviceEntry) -> Color {
+        if(entry.loading){
+            return .yellow
+        } else if (entry.connected) {
+            return .green
+        } else {
+            return .gray
+        }
+    }
 }
 
 #Preview {
-    DeviceRowView(device: BluetoothDeviceEntry(address: "address", name: "MyHeadphones", connected: true))
+    DeviceRowView(device: BluetoothDeviceEntry(
+        address: "address",
+        name: "MyHeadphones",
+        connected: true,
+        loading: false)
+    )
 }
