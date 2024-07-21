@@ -60,11 +60,28 @@ class BluetoothDevices: ObservableObject, BluetoothConnectionDelegate {
     
     func connectToDevice(device: IOBluetoothDevice) -> IOReturn {
         print("Connecting to \(device.name ?? "unknown")")
-        let result = device.openConnection()
-        if result == kIOReturnSuccess {
-            fetchPairedDevices()
+        
+        let timeoutInterval: TimeInterval = 4.0
+        var connectionResult: IOReturn = kIOReturnTimeout
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        DispatchQueue.global().async {
+            let result = device.openConnection()
+            connectionResult = result
+            semaphore.signal()
         }
-        return result
+        
+        let timeoutResult = semaphore.wait(timeout: .now() + timeoutInterval)
+        if timeoutResult == .timedOut {
+            print("Connection to \(device.name ?? "unknown") timed out")
+            // Optionally close the connection if it partially opened
+            device.closeConnection()
+        } else {
+            print("Connection result for \(device.name ?? "unknown"): \(connectionResult)")
+        }
+        
+        fetchPairedDevices()
+        return connectionResult
     }
     
     func disconnectFromDevice(deviceAddress: String) -> IOReturn {
