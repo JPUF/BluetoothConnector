@@ -28,19 +28,26 @@ struct ContentView: View {
                 Text("No devices found")
                     .padding()
             } else {
-                List(devices, id: \.addressString) { device in
-                    DeviceRowView(device: device) { shouldConnect in
-                        if shouldConnect {
-                            let _ = bluetoothDevices.connectToDevice(device: device)
-                        } else {
-                            let _ = bluetoothDevices.disconnectFromDevice(device: device)
+                List {
+                    ForEach(devices, id: \.addressString) { device in
+                        DeviceRowView(device: device) { shouldConnect in
+                            if shouldConnect {
+                                let _ = bluetoothDevices.connectToDevice(device: device)
+                            } else {
+                                let _ = bluetoothDevices.disconnectFromDevice(device: device)
+                            }
                         }
                     }
+                    .onMove(perform: move)
                 }
             }
         }
         .onAppear {
             bluetoothDevices.fetchPairedDevices()
         }
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        ()
     }
 }

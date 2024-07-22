@@ -71,12 +71,12 @@
 		039309C02C49ADFC00A30FDA /* BluetoothConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
 		03CA58CD2C41C99500B19996 /* ConnectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionIntent.swift; sourceTree = "<group>"; };
 		03CA58D12C41CF4100B19996 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
-		03DFDCAE2C315725008D6FBD /* ParseBluetoothDevices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseBluetoothDevices.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03DFDCAE2C315725008D6FBD /* BluetoothConnector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothConnector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DFDCB12C315725008D6FBD /* ParseBluetoothDevicesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseBluetoothDevicesApp.swift; sourceTree = "<group>"; };
 		03DFDCB32C315725008D6FBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03DFDCB52C315726008D6FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DFDCB82C315726008D6FBD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		03DFDCBA2C315726008D6FBD /* ParseBluetoothDevices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParseBluetoothDevices.entitlements; sourceTree = "<group>"; };
+		03DFDCBA2C315726008D6FBD /* BluetoothConnector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BluetoothConnector.entitlements; sourceTree = "<group>"; };
 		03DFDCC02C315AA4008D6FBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03DFDCC12C315BC8008D6FBD /* BluetoothDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				03CA58D02C41CF0900B19996 /* Shared */,
-				03DFDCB02C315725008D6FBD /* ParseBluetoothDevices */,
+				03DFDCB02C315725008D6FBD /* BluetoothConnector */,
 				032940A42C34AC8600D1F866 /* DeviceWidget */,
 				0329409F2C34AC8600D1F866 /* Frameworks */,
 				03DFDCAF2C315725008D6FBD /* Products */,
@@ -149,24 +149,24 @@
 		03DFDCAF2C315725008D6FBD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03DFDCAE2C315725008D6FBD /* ParseBluetoothDevices.app */,
+				03DFDCAE2C315725008D6FBD /* BluetoothConnector.app */,
 				0329409E2C34AC8600D1F866 /* DeviceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		03DFDCB02C315725008D6FBD /* ParseBluetoothDevices */ = {
+		03DFDCB02C315725008D6FBD /* BluetoothConnector */ = {
 			isa = PBXGroup;
 			children = (
 				03DFDCC02C315AA4008D6FBD /* Info.plist */,
 				03DFDCB12C315725008D6FBD /* ParseBluetoothDevicesApp.swift */,
 				03DFDCB32C315725008D6FBD /* ContentView.swift */,
 				03DFDCB52C315726008D6FBD /* Assets.xcassets */,
-				03DFDCBA2C315726008D6FBD /* ParseBluetoothDevices.entitlements */,
+				03DFDCBA2C315726008D6FBD /* BluetoothConnector.entitlements */,
 				03DFDCB72C315726008D6FBD /* Preview Content */,
 				035F26272C4ABC680080D7F9 /* DeviceRowAppView.swift */,
 			);
-			path = ParseBluetoothDevices;
+			path = BluetoothConnector;
 			sourceTree = "<group>";
 		};
 		03DFDCB72C315726008D6FBD /* Preview Content */ = {
@@ -197,9 +197,9 @@
 			productReference = 0329409E2C34AC8600D1F866 /* DeviceWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		03DFDCAD2C315725008D6FBD /* ParseBluetoothDevices */ = {
+		03DFDCAD2C315725008D6FBD /* BluetoothConnector */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03DFDCBD2C315726008D6FBD /* Build configuration list for PBXNativeTarget "ParseBluetoothDevices" */;
+			buildConfigurationList = 03DFDCBD2C315726008D6FBD /* Build configuration list for PBXNativeTarget "BluetoothConnector" */;
 			buildPhases = (
 				03DFDCAA2C315725008D6FBD /* Sources */,
 				03DFDCAB2C315725008D6FBD /* Frameworks */,
@@ -211,9 +211,9 @@
 			dependencies = (
 				032940AE2C34AC8700D1F866 /* PBXTargetDependency */,
 			);
-			name = ParseBluetoothDevices;
+			name = BluetoothConnector;
 			productName = ParseBluetoothDevices;
-			productReference = 03DFDCAE2C315725008D6FBD /* ParseBluetoothDevices.app */;
+			productReference = 03DFDCAE2C315725008D6FBD /* BluetoothConnector.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -234,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 03DFDCA92C315725008D6FBD /* Build configuration list for PBXProject "ParseBluetoothDevices" */;
+			buildConfigurationList = 03DFDCA92C315725008D6FBD /* Build configuration list for PBXProject "BluetoothConnector" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				03DFDCAD2C315725008D6FBD /* ParseBluetoothDevices */,
+				03DFDCAD2C315725008D6FBD /* BluetoothConnector */,
 				0329409D2C34AC8600D1F866 /* DeviceWidgetExtension */,
 			);
 		};
@@ -337,7 +337,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.ParseBluetoothDevices.DeviceWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.BluetoothConnector.DeviceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -366,7 +366,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.ParseBluetoothDevices.DeviceWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.BluetoothConnector.DeviceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -498,25 +498,28 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ParseBluetoothDevices/ParseBluetoothDevices.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = BluetoothConnector/BluetoothConnector.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ParseBluetoothDevices/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BluetoothConnector/Preview Content\"";
 				DEVELOPMENT_TEAM = 9H5767C6UN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ParseBluetoothDevices/Info.plist;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Pls giv";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Pls wrk";
+				INFOPLIST_FILE = BluetoothConnector/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BluetoothConnector;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Managing Bluetooth devices requires consent";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Managing Bluetooth devices requires consent";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.ParseBluetoothDevices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.BluetoothConnector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -529,25 +532,28 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ParseBluetoothDevices/ParseBluetoothDevices.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = BluetoothConnector/BluetoothConnector.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ParseBluetoothDevices/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BluetoothConnector/Preview Content\"";
 				DEVELOPMENT_TEAM = 9H5767C6UN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ParseBluetoothDevices/Info.plist;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Pls giv";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Pls wrk";
+				INFOPLIST_FILE = BluetoothConnector/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BluetoothConnector;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Managing Bluetooth devices requires consent";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Managing Bluetooth devices requires consent";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.ParseBluetoothDevices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlbennett.BluetoothConnector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -566,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03DFDCA92C315725008D6FBD /* Build configuration list for PBXProject "ParseBluetoothDevices" */ = {
+		03DFDCA92C315725008D6FBD /* Build configuration list for PBXProject "BluetoothConnector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03DFDCBB2C315726008D6FBD /* Debug */,
@@ -575,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03DFDCBD2C315726008D6FBD /* Build configuration list for PBXNativeTarget "ParseBluetoothDevices" */ = {
+		03DFDCBD2C315726008D6FBD /* Build configuration list for PBXNativeTarget "BluetoothConnector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03DFDCBE2C315726008D6FBD /* Debug */,

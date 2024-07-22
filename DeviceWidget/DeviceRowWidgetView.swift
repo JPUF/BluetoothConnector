@@ -12,21 +12,27 @@ struct DeviceRowWidgetView: View {
     let device: BluetoothDeviceEntry
 
     var body: some View {
-        Button(
+        return Button(
             intent: ConnectDeviceIntent(device.address, device.connected)
         ) {
             HStack {
-                Image(systemName: imageName(for: device))
-                    .resizable()
-                    .frame(width: 20.0, height: 20.0)
-                    .foregroundColor(imageColor(for: device))
-                    
+                if device.loading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(width: 20.0, height: 20.0)
+                        .foregroundColor(.white)
+                } else {
+                    Image(systemName: imageName(for: device))
+                        .resizable()
+                        .frame(width: 20.0, height: 20.0)
+                        .foregroundColor(imageColor(for: device))
+                }
+
                 Text(device.name)
                     .font(.subheadline)
                     .foregroundColor(.primary)
             }
             .background(Color.clear)
-            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .buttonStyle(PlainButtonStyle())
@@ -34,9 +40,7 @@ struct DeviceRowWidgetView: View {
     }
     
     private func imageName(for entry: BluetoothDeviceEntry) -> String {
-        if entry.loading {
-            return "circle"
-        } else if entry.connected {
+        if entry.connected {
             return "link.circle"
         } else {
             return "circle"
@@ -44,9 +48,7 @@ struct DeviceRowWidgetView: View {
     }
     
     private func imageColor(for entry: BluetoothDeviceEntry) -> Color {
-        if entry.loading {
-            return .clear
-        } else if entry.connected {
+        if entry.connected {
             return .green
         } else {
             return .gray

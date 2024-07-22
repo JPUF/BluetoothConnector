@@ -12,7 +12,7 @@ import WidgetKit
 struct WidgetBridge {
     private static let bluetoothDevices = BluetoothDevices.shared
     
-    private static let deviceSuiteName = "group.com.jlbennett.ParseBluetoothDevices"
+    private static let deviceSuiteName = "group.com.jlbennett.BluetoothConnector"
     private static let deviceDataKey = "BluetoothDevices"
     
     static func fetchData() -> [[String: Any]] {

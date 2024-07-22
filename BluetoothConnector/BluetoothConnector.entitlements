@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.jlbennett.ParseBluetoothDevices</string>
+		<string>group.com.jlbennett.BluetoothConnector</string>
 	</array>
 	<key>com.apple.security.device.bluetooth</key>
 	<true/>

@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "03DFDCAD2C315725008D6FBD"
-               BuildableName = "ParseBluetoothDevices.app"
-               BlueprintName = "ParseBluetoothDevices"
-               ReferencedContainer = "container:ParseBluetoothDevices.xcodeproj">
+               BuildableName = "BluetoothConnector.app"
+               BlueprintName = "BluetoothConnector"
+               ReferencedContainer = "container:BluetoothConnector.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03DFDCAD2C315725008D6FBD"
-            BuildableName = "ParseBluetoothDevices.app"
-            BlueprintName = "ParseBluetoothDevices"
-            ReferencedContainer = "container:ParseBluetoothDevices.xcodeproj">
+            BuildableName = "BluetoothConnector.app"
+            BlueprintName = "BluetoothConnector"
+            ReferencedContainer = "container:BluetoothConnector.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03DFDCAD2C315725008D6FBD"
-            BuildableName = "ParseBluetoothDevices.app"
-            BlueprintName = "ParseBluetoothDevices"
-            ReferencedContainer = "container:ParseBluetoothDevices.xcodeproj">
+            BuildableName = "BluetoothConnector.app"
+            BlueprintName = "BluetoothConnector"
+            ReferencedContainer = "container:BluetoothConnector.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

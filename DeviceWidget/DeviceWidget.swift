@@ -22,6 +22,10 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
         let maxDevices = maxVisibleDevices(for: context)
+        let devices = fetchBluetoothDevicesFromSharedContainer()
+        devices.forEach {
+            print("widget device loading: \($0.loading)")
+        }
         let entry = SimpleEntry(date: currentDate, devices: fetchBluetoothDevicesFromSharedContainer(), maxDeviceCount: maxDevices)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
